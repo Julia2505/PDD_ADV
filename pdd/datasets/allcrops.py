@@ -24,9 +24,8 @@ def load_data(path='all_crops.tar',
     # Returns
         Path to the folder with data or tuple with train and test paths
     """
-    path = get_file(path,
-                    origin="http://pdd.jinr.ru/crops_nn.tar",
-                    file_hash='c95a9f3d601832d6912cd33c969c680dd91a2863b95daebffaf5284ad8119bf0',
+    path = get_file('/content/gdrive/My Drive/DIPLOM/crops.tar',
+                    file_hash='72516B734AD826603249DC8B9516BF60B472CC9',
                     extract=True)
 
     try:
