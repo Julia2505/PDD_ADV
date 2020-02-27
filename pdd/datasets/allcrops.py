@@ -10,8 +10,7 @@ import numpy as np
 import sys
 
 
-def load_data(path='crops.tar',
-              split_on_train_test=False, 
+def load_data(path='crops.tar', origin="/content/gdrive/My Drive/DIPLOM/crops.tar", split_on_train_test=False, 
               test_size=None, 
               random_state=0):
     """Loads the PDD dataset with all crops.
@@ -24,8 +23,7 @@ def load_data(path='crops.tar',
     # Returns
         Path to the folder with data or tuple with train and test paths
     """
-    path = get_file(path, origin="/content/gdrive/My Drive/DIPLOM/crops.tar",
-                    file_hash='72516B734AD826603249DC8B9516BF60B472CC9',
+    path = get_file(path, origin, file_hash='72516B734AD826603249DC8B9516BF60B472CC9',
                     extract=True)
 
     try:
