@@ -10,7 +10,7 @@ import numpy as np
 import sys
 
 
-def load_data(path='all_crops.tar', 
+def load_data(path='crops.tar', 
               split_on_train_test=False, 
               test_size=None, 
               random_state=0):
