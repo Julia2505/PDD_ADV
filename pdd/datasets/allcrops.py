@@ -4,13 +4,13 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from ..utils.data_utils import get_file
+#from ..utils.data_utils import get_file
 from ..utils.data_utils import datadir_train_test_split
 import numpy as np
 import sys
 
 
-def load_data(path='crops.tar', #origin=https://drive.google.com/open?id=17TTkFEMavF_34qdz6n-4trNuueCwnt1L, 
+def load_data(path, 
               split_on_train_test=False, 
               test_size=None, 
               random_state=0):
@@ -24,8 +24,9 @@ def load_data(path='crops.tar', #origin=https://drive.google.com/open?id=17TTkFE
     # Returns
         Path to the folder with data or tuple with train and test paths
     """
-    path = get_file(path='crops.tar', origin='https://drive.google.com/open?id=17TTkFEMavF_34qdz6n-4trNuueCwnt1L', file_hash='72516B734AD826603249DC8B9516BF60B472CC9', extract=True)
-    
+
+    #f = get_file(fname="crops.tar", origin="/drive/My drive/DIPLOM/crops.tar",
+                   #file_hash='72516B734AD826603249DC8B9516BF60B472CC9', extract=True)
     try:
         if split_on_train_test:
             print("Splitting on train and test...")
@@ -36,4 +37,4 @@ def load_data(path='crops.tar', #origin=https://drive.google.com/open?id=17TTkFE
     except:
         print("Unexpected error:", sys.exc_info()[0])
     
-    return path
+    return way
