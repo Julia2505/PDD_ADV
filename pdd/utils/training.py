@@ -47,7 +47,6 @@ class SiameseBatchGenerator(BaseBatchGenerator):
     and making batches of pairs of images, during training
     Positive pair (1) - utterances of one class
     Negative pair (0) - utterances from different classes
-
     # Arguments
     """
     def __init__(self, X, y, 
@@ -116,11 +115,9 @@ class SiameseBatchGenerator(BaseBatchGenerator):
 
     def __count_stats(self):
         self.samples_per_class = np.unique(self.y, return_counts=True)[1]
-        print (self.y, flush=True)
         self.n_classes = len(self.samples_per_class)
         # sort indices by their value, i.e. sort labels
         sorted_idx = np.argsort(self.y)
-        print (self.n_classes, flush=True)
         # split sorted indices on classes
         self.class_idx = np.split(sorted_idx, np.cumsum(self.samples_per_class)[:-1])
 
@@ -167,7 +164,6 @@ class SiameseBatchGenerator(BaseBatchGenerator):
         # array for storing pairs
         pairs = np.zeros((2, n, *self.x.shape[1:]), dtype=self.x.dtype)        
         # randomly choose n class labels 
-        print (self.n_classes, flush=True)
         classes = np.random.randint(self.n_classes, size=n)
         
         i = 0
