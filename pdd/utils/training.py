@@ -115,12 +115,12 @@ class SiameseBatchGenerator(BaseBatchGenerator):
             
 
     def __count_stats(self):
-        print (self.n_classes, flush=True)
         self.samples_per_class = np.unique(self.y, return_counts=True)[1]
         print (self.y, flush=True)
         self.n_classes = len(self.samples_per_class)
         # sort indices by their value, i.e. sort labels
         sorted_idx = np.argsort(self.y)
+        print (self.n_classes, flush=True)
         # split sorted indices on classes
         self.class_idx = np.split(sorted_idx, np.cumsum(self.samples_per_class)[:-1])
 
