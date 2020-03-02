@@ -165,6 +165,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
         # array for storing pairs
         pairs = np.zeros((2, n, *self.x.shape[1:]), dtype=self.x.dtype)        
         # randomly choose n class labels 
+        print (self.n_classes, flush=True)
         classes = np.random.randint(self.n_classes, size=n)
         
         i = 0
