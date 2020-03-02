@@ -185,6 +185,8 @@ class SiameseBatchGenerator(BaseBatchGenerator):
         print (arr.shape, flush=True)
         print (result.shape, flush=True)
         result = result.reshape((*arr.shape, *result[0].shape))
+        for x in result:
+            print(x.shape)
         return result
 
 
