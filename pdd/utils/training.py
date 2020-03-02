@@ -105,7 +105,6 @@ class SiameseBatchGenerator(BaseBatchGenerator):
         # transform to arrays for convenience
         X = np.array(X)
         y = np.array(y, dtype=np.int8)
-        print (self.y, flush=True)
         # call __init__
         return cls(X, y, batch_size, flow_from_dir=True, 
                    augment=augment,
@@ -117,6 +116,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
 
     def __count_stats(self):
         self.samples_per_class = np.unique(self.y, return_counts=True)[1]
+        print (self.y, flush=True)
         self.n_classes = len(self.samples_per_class)
         # sort indices by their value, i.e. sort labels
         sorted_idx = np.argsort(self.y)
