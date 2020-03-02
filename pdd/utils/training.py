@@ -115,6 +115,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
             
 
     def __count_stats(self):
+        print (self.n_classes, flush=True)
         self.samples_per_class = np.unique(self.y, return_counts=True)[1]
         print (self.y, flush=True)
         self.n_classes = len(self.samples_per_class)
