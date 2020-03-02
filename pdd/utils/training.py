@@ -105,6 +105,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
         # transform to arrays for convenience
         X = np.array(X)
         y = np.array(y, dtype=np.int8)
+        print (self.n_classes, flush=True)
         # call __init__
         return cls(X, y, batch_size, flow_from_dir=True, 
                    augment=augment,
