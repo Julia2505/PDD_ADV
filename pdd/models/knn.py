@@ -10,8 +10,6 @@ import os
 class TfKNN:
     def __init__(self, sess, feature_extractor, support_set):
         self.feature_extractor = feature_extractor
-        print (self.inputs)
-        print (self.inputs_rescaled)
         self._get_keys_from_support_set(support_set[0])
         # after getting features we can freeze graph 
         self._freeze_feature_extractor_graph(sess)
