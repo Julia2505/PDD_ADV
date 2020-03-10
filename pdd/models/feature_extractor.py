@@ -30,7 +30,8 @@ def conv_block(n_filters,
 
         x = Conv2D(n_filters, filter_size, use_bias=bias,
             kernel_regularizer=L1L2(l1_reg, l2_reg))(inputs)
-        x = Activation(random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
+        x = Activation(activation)(x)
+        #x = Activation(random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
         
         if batch_norm:
             x = BatchNormalization()(x)
