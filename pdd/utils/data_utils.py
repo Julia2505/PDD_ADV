@@ -62,7 +62,7 @@ def create_dataset_from_dir(dirname, shuffle=False, augment=False, **kwargs):
         y = y[idx]
         
     if augment:
-        __get_distortion_generator()
+        __get_distortion_generator(img)
             
     dataset = {'data'         :  x, 
                'target'       :  y,
@@ -70,7 +70,7 @@ def create_dataset_from_dir(dirname, shuffle=False, augment=False, **kwargs):
 
     return dataset
 ###
-def __get_distortion_generator(imgs):
+def __get_distortion_generator(img):
         distortion_generator = ImageDataGenerator(
             rotation_range = 75,
             shear_range=0.3, 
