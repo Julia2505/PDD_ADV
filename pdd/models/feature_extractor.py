@@ -15,21 +15,21 @@ def conv_block(hp, n_filters,
                filter_size,
                #activation='relu',
                #
-               activation=activation_choice,
+               activation=hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
                #
                l1_reg=0, 
                l2_reg=0, 
                dropout=0, 
                batch_norm=False):
-  activation_choice = hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu'])
+  #activation_choice = hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu'])
 
-    def _conv_block(inputs):
+    def _conv_block(hp, inputs):
         # don't use bias, if batch_normalization
         bias=True if batch_norm else False
 
         x = Conv2D(n_filters, filter_size, use_bias=bias,
             kernel_regularizer=L1L2(l1_reg, l2_reg))(inputs)
-        x = Activation(activation_choice)(x)
+        x = Activation(hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
         
         if batch_norm:
             x = BatchNormalization()(x)
@@ -54,5 +54,5 @@ def get_feature_extractor(hp, input_shape):
     encoded = Dense(units=hp.Int('units_input',    # Полносвязный слой с разным количеством нейронов
                                    min_value=32,    # минимальное количество нейронов - 128
                                    max_value=1024,   # максимальное количество - 1024
-                                   step=32), activation=activation_choice)(x)
+                                   step=32), activation=hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
     return Model(inputs, encoded)
