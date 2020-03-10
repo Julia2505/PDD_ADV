@@ -41,7 +41,7 @@ def read_images_from_dir(dirname, **kwargs):
     return imgs
   
   
-def create_dataset_from_dir(dirname, shuffle=False, augment=False, **kwargs):
+def create_dataset_from_dir(dirname, shuffle=True, augment=True, **kwargs):
     x = []
     y = []
 
