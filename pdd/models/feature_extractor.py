@@ -8,11 +8,15 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
+from random import choice
 
 
 def conv_block(n_filters, 
                filter_size,
-               activation='relu',
+               #activation='relu',
+               #
+               activation_choice = choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
+               #
                l1_reg=0, 
                l2_reg=0, 
                dropout=0, 
@@ -24,7 +28,7 @@ def conv_block(n_filters,
 
         x = Conv2D(n_filters, filter_size, use_bias=bias,
             kernel_regularizer=L1L2(l1_reg, l2_reg))(inputs)
-        x = Activation(activation)(x)
+        x = Activation(activation_choice)(x)
         
         if batch_norm:
             x = BatchNormalization()(x)
@@ -45,5 +49,6 @@ def get_feature_extractor(input_shape):
     x = conv_block(256, (3, 3), batch_norm=True)(x)
     x = conv_block(512, (3, 3), batch_norm=True)(x)
     x = Flatten()(x)
-    encoded = Dense(1024, activation='sigmoid')(x)
+    #encoded = Dense(1024, activation='sigmoid')(x)
+    encoded = Dense(1024, activation=activation_choice)(x)
     return Model(inputs, encoded)
