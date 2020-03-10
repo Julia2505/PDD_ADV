@@ -8,14 +8,14 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
-#from random import Choice
+import random
 
 
 def conv_block(n_filters, 
                filter_size,
                #activation='relu',
                #
-               activation=hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
+               activation=random.choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
                #
                l1_reg=0, 
                l2_reg=0, 
@@ -29,7 +29,7 @@ def conv_block(n_filters,
 
         x = Conv2D(n_filters, filter_size, use_bias=bias,
             kernel_regularizer=L1L2(l1_reg, l2_reg))(inputs)
-        x = Activation(hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
+        x = Activation(random.choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
         
         if batch_norm:
             x = BatchNormalization()(x)
@@ -54,5 +54,5 @@ def get_feature_extractor(input_shape):
     encoded = Dense(units=hp.Int('units_input',    # Полносвязный слой с разным количеством нейронов
                                    min_value=32,    # минимальное количество нейронов - 128
                                    max_value=1024,   # максимальное количество - 1024
-                                   step=32), activation=hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
+                                   step=32), activation=random.choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
     return Model(inputs, encoded)
