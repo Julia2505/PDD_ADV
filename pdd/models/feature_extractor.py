@@ -8,19 +8,20 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
-from random import choice
+from random import Choice
 
 
-def conv_block(n_filters, 
+def conv_block(hp, n_filters, 
                filter_size,
                #activation='relu',
                #
-               activation_choice = choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
+               activation=activation_choice,
                #
                l1_reg=0, 
                l2_reg=0, 
                dropout=0, 
                batch_norm=False):
+  activation_choice = hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu'])
 
     def _conv_block(inputs):
         # don't use bias, if batch_normalization
@@ -41,7 +42,7 @@ def conv_block(n_filters,
     return _conv_block
 
 
-def get_feature_extractor(input_shape):
+def get_feature_extractor(hp, input_shape):
     inputs = Input(input_shape)
     x = conv_block(32, (10, 10), batch_norm=True)(inputs)
     x = conv_block(64, (7, 7), batch_norm=True)(x)
@@ -50,5 +51,8 @@ def get_feature_extractor(input_shape):
     x = conv_block(512, (3, 3), batch_norm=True)(x)
     x = Flatten()(x)
     #encoded = Dense(1024, activation='sigmoid')(x)
-    encoded = Dense(1024, activation=activation_choice)(x)
+    encoded = Dense(units=hp.Int('units_input',    # Полносвязный слой с разным количеством нейронов
+                                   min_value=32,    # минимальное количество нейронов - 128
+                                   max_value=1024,   # максимальное количество - 1024
+                                   step=32), activation=activation_choice)(x)
     return Model(inputs, encoded)
