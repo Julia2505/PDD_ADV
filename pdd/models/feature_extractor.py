@@ -13,10 +13,10 @@ import random
 
 def conv_block(n_filters, 
                filter_size,
-               #activation='relu',
+               activation='relu',
                #
                #activation=random.choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
-               activation=random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
+               #activation=random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']),
                #
                l1_reg=0, 
                l2_reg=0, 
