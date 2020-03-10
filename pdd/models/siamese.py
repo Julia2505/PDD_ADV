@@ -61,12 +61,12 @@ def make_siamese(twin_model, dist='l1', loss='cross_entropy', train_opt=None):
 
     # create model
     ###
-    model.add(Dense(units=hp.Range('units_input',
-                                   min_value=128,
-                                   max_value=1084,
-                                   step=32),
-                    input_dim=78,
-                    activation='relu'))
+    #model.add(Dense(units=hp.Range('units_input',
+    #                               min_value=128,
+    #                               max_value=1084,
+    #                               step=32),
+    #                input_dim=78,
+    #                activation='relu'))
     ###
     model = Model(inputs=[l_input, r_input], outputs=output)
     # compile it
