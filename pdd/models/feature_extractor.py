@@ -52,7 +52,7 @@ def get_feature_extractor(input_shape):
     x = conv_block(512, (3, 3), batch_norm=True)(x)
     x = Flatten()(x)
     #encoded = Dense(1024, activation='sigmoid')(x)
-    encoded = Dense(units=hp.Int('units_input',    # Полносвязный слой с разным количеством нейронов
+    encoded = Dense(units=Int('units_input',    # Полносвязный слой с разным количеством нейронов
                                    min_value=32,    # минимальное количество нейронов - 128
                                    max_value=1024,   # максимальное количество - 1024
                                    step=32), activation=random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
