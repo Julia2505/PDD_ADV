@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
-from random import Choice
+#from random import Choice
 
 
 def conv_block(hp, n_filters, 
