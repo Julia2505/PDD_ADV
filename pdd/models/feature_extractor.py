@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Flatten
 #from random import Choice
 
 
-def conv_block(hp, n_filters, 
+def conv_block(n_filters, 
                filter_size,
                #activation='relu',
                #
@@ -23,7 +23,7 @@ def conv_block(hp, n_filters,
                batch_norm=False):
   #activation_choice = hp.Choice('activation', values=['relu', 'sigmoid', 'tanh', 'elu', 'selu'])
 
-    def _conv_block(hp, inputs):
+    def _conv_block(inputs):
         # don't use bias, if batch_normalization
         bias=True if batch_norm else False
 
@@ -42,7 +42,7 @@ def conv_block(hp, n_filters,
     return _conv_block
 
 
-def get_feature_extractor(hp, input_shape):
+def get_feature_extractor(input_shape):
     inputs = Input(input_shape)
     x = conv_block(32, (10, 10), batch_norm=True)(inputs)
     x = conv_block(64, (7, 7), batch_norm=True)(x)
