@@ -10,6 +10,7 @@ import numpy as np
 from glob import glob
 from matplotlib.pyplot import imread
 from tqdm import tqdm
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
 def read_image(filename, normalize=True, grayscale=False):
@@ -40,7 +41,7 @@ def read_images_from_dir(dirname, **kwargs):
     return imgs
   
   
-def create_dataset_from_dir(dirname, shuffle=False, **kwargs):
+def create_dataset_from_dir(dirname, shuffle=False, augment=False, **kwargs):
     x = []
     y = []
 
@@ -54,19 +55,33 @@ def create_dataset_from_dir(dirname, shuffle=False, **kwargs):
 
     x = np.asarray(x)
     y = np.asarray(y)
-
+    
     if shuffle:
         idx = np.random.permutation(range(len(x)))
         x = x[idx]
         y = y[idx]
-
+        
+    if augment:
+        __get_distortion_generator()
+            
     dataset = {'data'         :  x, 
                'target'       :  y,
                'target_names' :  labels}
 
     return dataset
-
-
+###
+def __get_distortion_generator(imgs):
+        distortion_generator = ImageDataGenerator(
+            rotation_range = 75,
+            shear_range=0.3, 
+            zoom_range=0.3, 
+            width_shift_range=0.2, 
+            height_shift_range=0.2,
+            channel_shift_range=0.2,
+            vertical_flip=True,
+            horizontal_flip=True
+        )
+###        
 def _remove_path_if_exists(path):
     if os.path.exists(path):
         if os.path.isfile(path):
