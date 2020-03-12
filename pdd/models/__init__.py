@@ -5,4 +5,4 @@ from __future__ import print_function
 
 from .knn import TfKNN
 from .siamese import make_siamese
-from .feature_extractor import get_feature_extractor
+from .feature_extractor import get_pretrained_feature_extractor
