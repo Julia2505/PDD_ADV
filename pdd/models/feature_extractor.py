@@ -44,7 +44,7 @@ def conv_block(n_filters,
     return _conv_block
 
 
-def get_feature_extractor(input_shape):
+def get_pretrained_feature_extractor(input_shape):
     #inputs = Input(input_shape)
     #x = conv_block(32, (10, 10), batch_norm=True)(inputs)
     #x = conv_block(64, (7, 7), batch_norm=True)(x)
