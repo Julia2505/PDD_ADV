@@ -8,6 +8,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
+from tensorflow.keras.applications import MobileNet
 import random
 
 
