@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
-from tensorflow.keras.applications import MobileNet
+from tensorflow.keras.applications.mobilenet import MobileNet
 import random
 
 
@@ -53,7 +53,8 @@ def get_pretrained_feature_extractor(input_shape):
     #x = conv_block(256, (3, 3), batch_norm=True)(x)
     #x = conv_block(512, (3, 3), batch_norm=True)(x)
     #x = Flatten()(x)
-    keras.applications.mobilenet.MobileNet(input_shape=input_shape, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights='imagenet', input_tensor=None, pooling=None, classes=None)
+    base.model=MobileNet(input_shape=input_shape, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights='imagenet', input_tensor=None, pooling=None, classes=None)
+    x=base_model.output
     encoded = Dense(1024, activation='sigmoid')(x)
     #encoded = Dense(1024, activation=random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
     return Model(inputs, encoded)
