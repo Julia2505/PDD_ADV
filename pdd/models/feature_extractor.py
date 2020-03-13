@@ -56,10 +56,8 @@ def get_pretrained_feature_extractor(input_shape):
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
     x = GlobalAveragePooling2D()(x)
-    x = Dropout(rate = .2)(x)
     x = BatchNormalization()(x)
     x = Dense(1280, activation='relu')(x)
-    x = Dropout(rate = .2)(x)
     x = BatchNormalization()(x)
     encoded = Dense(1024, activation='sigmoid')(x)
     return Model(inputs, encoded)
