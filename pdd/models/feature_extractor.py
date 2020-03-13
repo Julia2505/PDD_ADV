@@ -10,6 +10,9 @@ from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.applications.mobilenet import MobileNet
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
+
+from tensorflow.keras.layers import GlobalAveragePooling2D
+
 import random
 import tensorflow as tf
 
