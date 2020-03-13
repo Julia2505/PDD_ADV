@@ -9,6 +9,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.applications.mobilenet import MobileNet
+from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
 import random
 
 
@@ -47,8 +48,9 @@ def conv_block(n_filters,
 
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
-    input_tensor = Input(shape=(256, 256, 3))
-    base_model=MobileNet(input_shape=inputs, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights=None, input_tensor=input_tensor, pooling=None, classes=None)
+    input_tensor = (256, 256)
+    #base_model=MobileNet(input_shape=inputs, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights=None, input_tensor=input_tensor, pooling=None, classes=None)
+    base_model=MobileNetV2(input_shape=inputs, alpha=1.0, include_top=False, weights=None, input_tensor=input_tensor, pooling=None, classes=None)
     x=base_model.output
     encoded = Dense(1024, activation='sigmoid')(x)
     return Model(inputs, encoded)
