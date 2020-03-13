@@ -48,7 +48,7 @@ def conv_block(n_filters,
 
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
-    input_tensor = Input(input_shape)
+    input_tensor =  Input(shape=(256, 256, 3))
     #base_model=MobileNet(input_shape=inputs, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights=None, input_tensor=input_tensor, pooling=None, classes=None)
     base_model=MobileNetV2(input_shape=inputs, alpha=1.0, include_top=False, weights=None, input_tensor=input_tensor, pooling=None, classes=None)
     x=base_model.output
