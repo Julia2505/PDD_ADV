@@ -59,7 +59,7 @@ def get_pretrained_feature_extractor(input_shape):
     x = BatchNormalization()(x)
     x = Dense(1280, activation='relu')(x)
     x = BatchNormalization()(x)
-    encoded = Dense(1024, activation='sigmoid')(x)
-    return Model(inputs, encoded)
+    prediction = Dense(1024, activation='sigmoid')(x)
+    return Model(inputs, prediction)
   
   #random.randint(512, 1024)
