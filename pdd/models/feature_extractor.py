@@ -53,7 +53,7 @@ def get_pretrained_feature_extractor(input_shape):
     #base_model=MobileNetV2(input_shape=inputs, alpha=1.0, include_top=False, weights=None, input_tensor=None, pooling=None, classes=None)
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
-    x = conv_block(32, (10, 10), batch_norm=True)(inputs)
+    x = conv_block(32, (10, 10), batch_norm=True)(x)
     x = conv_block(64, (7, 7), batch_norm=True)(x)
     x = conv_block(128, (5, 5), batch_norm=True)(x)
     x = conv_block(256, (3, 3), batch_norm=True)(x)
