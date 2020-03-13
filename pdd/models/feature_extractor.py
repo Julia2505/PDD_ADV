@@ -53,7 +53,7 @@ def get_pretrained_feature_extractor(input_shape):
     #x = conv_block(256, (3, 3), batch_norm=True)(x)
     #x = conv_block(512, (3, 3), batch_norm=True)(x)
     #x = Flatten()(x)
-    base_model=MobileNet(input_shape=inputs, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights='imagenet', input_tensor=None, pooling=None, classes=None)
+    base_model=MobileNet(input_shape=inputs, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=False, weights=None, input_tensor=None, pooling=None, classes=None)
     x=base_model.output
     encoded = Dense(1024, activation='sigmoid')(x)
     #encoded = Dense(1024, activation=random.choice(['relu', 'sigmoid', 'tanh', 'elu', 'selu']))(x)
