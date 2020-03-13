@@ -11,6 +11,7 @@ from tensorflow.keras.layers import Flatten
 from tensorflow.keras.applications.mobilenet import MobileNet
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
 import random
+import tensorflow as tf
 
 
 def conv_block(n_filters, 
