@@ -45,7 +45,7 @@ def conv_block(n_filters,
 
     return _conv_block
 
-
+@tf.function
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
     input_tensor =  Input(shape=(256, 256, 3))
