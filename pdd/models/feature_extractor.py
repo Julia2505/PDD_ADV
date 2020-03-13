@@ -53,12 +53,10 @@ def get_pretrained_feature_extractor(input_shape):
     #base_model=MobileNetV2(input_shape=inputs, alpha=1.0, include_top=False, weights=None, input_tensor=None, pooling=None, classes=None)
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
-    x = conv_block(32, (10, 10), batch_norm=True)(x)
-    x = conv_block(64, (7, 7), batch_norm=True)(x)
-    x = conv_block(128, (5, 5), batch_norm=True)(x)
-    x = conv_block(256, (3, 3), batch_norm=True)(x)
-    x = conv_block(512, (3, 3), batch_norm=True)(x)
-    x = Flatten()(x)
+    x = GlobalAveragePooling2D()(x)
+    x = BatchNormalization()(x)
+    x = Dense(1280, activation='relu')(x)
+    x = BatchNormalization()(x)
     encoded = Dense(1024, activation='sigmoid')(x)
     return Model(inputs, encoded)
   
