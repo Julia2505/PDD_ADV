@@ -49,7 +49,7 @@ def conv_block(n_filters,
 
     return _conv_block
 
-#@tf.function
+@tf.function
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
