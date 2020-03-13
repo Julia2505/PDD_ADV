@@ -8,6 +8,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import Dropout
 from tensorflow.keras.applications.mobilenet import MobileNet
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
 
@@ -55,8 +56,10 @@ def get_pretrained_feature_extractor(input_shape):
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
     x = GlobalAveragePooling2D()(x)
+    x = Dropout(rate = .2)(x)
     x = BatchNormalization()(x)
     x = Dense(1280, activation='relu')(x)
+    x = Dropout(rate = .2)(x)
     x = BatchNormalization()(x)
     encoded = Dense(1024, activation='sigmoid')(x)
     return Model(inputs, encoded)
