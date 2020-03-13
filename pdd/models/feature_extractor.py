@@ -56,7 +56,7 @@ def get_pretrained_feature_extractor(input_shape):
     #base_model=MobileNetV2(input_shape=inputs, alpha=1.0, include_top=False, weights=None, input_tensor=None, pooling=None, classes=None)
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
-    x = GlobalAveragePooling2D()(x)
+    #x = GlobalAveragePooling2D()(x)
     x = BatchNormalization()(x)
     x = Dense(1280, activation='relu')(x)
     x = BatchNormalization()(x)
