@@ -54,8 +54,8 @@ def conv_block(n_filters,
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
     base_model=MobileNetV2(input_shape=inputs, include_top=False)
-    x=base_model.output
     base_model.summary()
+    x=base_model.output
     x = GlobalAveragePooling2D()(x)
     x = BatchNormalization()(x)
     x = Dense(1280, activation='relu')(x)
