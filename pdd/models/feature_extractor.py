@@ -53,7 +53,7 @@ def conv_block(n_filters,
 @tf.function
 def get_pretrained_feature_extractor(input_shape):
     inputs = Input(input_shape)
-    base_model=MobileNetV2(inputs=inputs, include_top=False)
+    base_model=MobileNetV2(input_shape=inputs, include_top=False)
     x=base_model.output
     base_model.summary()
     x = GlobalAveragePooling2D()(x)
