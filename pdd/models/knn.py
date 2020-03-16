@@ -54,7 +54,7 @@ class TfKNN:
         print("Creating TfKNN graph...")
         #self.inputs = self.graph.get_tensor_by_name('prefix/input_1:0')
         #self.inputs = self.graph.get_tensor_by_name('prefix/input_1:0')
-        self.inputs = self.graph.get_tensor_by_name('prefix/input_1_1:0')
+        self.inputs = self.graph.get_tensor_by_name('prefix/input_1:0')
         # rescale to embeddings space
         #self.inputs_rescaled = self.graph.get_tensor_by_name('prefix/dense_1/Sigmoid:0')
         #self.inputs_rescaled = self.graph.get_tensor_by_name('prefix/dense/Sigmoid:0')
