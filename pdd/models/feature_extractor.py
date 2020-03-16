@@ -50,17 +50,17 @@ def conv_block(n_filters,
 
     return _conv_block
 
-@tf.function
-def get_pretrained_feature_extractor(input_shape):
-    inputs = Input(input_shape)
-    base_model=MobileNetV2(input_shape=inputs, include_top=False)
+#@tf.function
+def get_pretrained_feature_extractor(img_shape):
+    #inputs = Input(input_shape)
+    base_model=MobileNetV2(input_shape=img_shape, include_top=False)
     base_model.summary()
-    x=base_model.output
-    x = GlobalAveragePooling2D()(x)
-    x = BatchNormalization()(x)
-    x = Dense(1280, activation='relu')(x)
-    x = BatchNormalization()(x)
-    encoded = Dense(1024, activation='sigmoid')(x)
-    return Model(inputs=base_model.input, outputs=encoded)
+    #x=base_model.output
+    #x = GlobalAveragePooling2D()(x)
+    #x = BatchNormalization()(x)
+    #x = Dense(1280, activation='relu')(x)
+    #x = BatchNormalization()(x)
+    #encoded = Dense(1024, activation='sigmoid')(x)
+    #return Model(inputs=base_model.input, outputs=encoded)
   
   #random.randint(512, 1024)
