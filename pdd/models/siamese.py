@@ -71,6 +71,7 @@ def make_siamese(twin_model, dist='l1', loss='cross_entropy', train_opt=None):
     model = Model(inputs=[l_input, r_input], outputs=output)
     # compile it
     #train_opt = choice(['adam','rmsprop','SGD']) if train_opt is None else train_opt
-    train_opt = Adam(lr=0.0001)  if train_opt is None else train_opt
+    #train_opt = Adam(lr=0.0001)  if train_opt is None else train_opt
+    train_opt = Adam(lr=0.000003)  if train_opt is None else train_opt
     model.compile(loss=loss_arg, optimizer=train_opt, metrics=['accuracy']) 
     return model
