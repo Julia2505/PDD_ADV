@@ -50,7 +50,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
     # Arguments
     """
     def __init__(self, X, y, 
-                 batch_size=42, 
+                 batch_size=32, 
                  flow_from_dir=False, 
                  augment=False, 
                  **kwargs):
@@ -73,7 +73,7 @@ class SiameseBatchGenerator(BaseBatchGenerator):
 
 
     @classmethod
-    def from_directory(cls, dirname, batch_size=42, augment=False):
+    def from_directory(cls, dirname, batch_size=32, augment=False):
         '''Constructor only for images
         '''
         assert os.path.isdir(dirname), "There is no such directory `%s`" % dirname
