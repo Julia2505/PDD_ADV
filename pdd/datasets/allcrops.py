@@ -30,7 +30,7 @@ def load_data(path,
     try:
         if split_on_train_test:
             print("Splitting on train and test...")
-            test_size = 0.25 if test_size is None else test_size
+            test_size = 0.15 if test_size is None else test_size
             train_path, test_path = datadir_train_test_split(
                 path, test_size, random_state)
             return (train_path, test_path)
