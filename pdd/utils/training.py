@@ -182,6 +182,8 @@ class SiameseBatchGenerator(BaseBatchGenerator):
                 result[i] = self.random_distortion(result[i])
                 
         result = np.array(result)
+        for x in result:
+            print(x.shape)
         result = result.reshape((*arr.shape, *result[0].shape))
         return result
 
