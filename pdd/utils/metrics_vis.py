@@ -65,10 +65,10 @@ def plot_incorrect_predictions(imgs,
         plt.subplot(len(incorrect_preds_idx), 1, i+1)
         # get true class
         true_class = y_true[idx]
-        true_class = target_names[true_class]
+        #true_class = target_names[true_class]
         # get predicted class
         pred_class = y_pred[idx]
-        pred_class = target_names[pred_class]
+        #pred_class = target_names[pred_class]
         # plot image and add caption
         plt.title('True - `%s`, Predicted - `%s`' % (true_class, pred_class))
         plt.imshow(imgs[idx])
